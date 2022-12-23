@@ -2,60 +2,59 @@ let wins = 0;
 let losts = 0;
 let draws = 0;
 
-
-function playRound(playerSelection, computerSelection){
-    if((playerSelection === 'Rock' && computerSelection === 'Rock') || (playerSelection === 'Paper' && computerSelection === 'Paper') || (playerSelection === 'Scissors' && computerSelection === 'Scissors')){
+function playRound(playerSelection, computerSelection) {
+    console.log(`You chose ${playerSelection}`);
+    console.log(`Computer chose ${computerSelection}`);
+    if ((playerSelection === 'ROCK' && computerSelection === 'ROCK') || (playerSelection === 'PAPER' && computerSelection === 'PAPER') || (playerSelection === 'SCISSORS' && computerSelection === 'SCISSORS')) {
         draws++;
-        // console.log(draws);
-        return 'It\'s a draw!';
-    } else if(playerSelection.toLowerCase() === 'Rock' && computerSelection === 'Paper'){
+        return `It\'s a draw! Current result is Player : ${wins} Computer : ${losts}`;
+    } else if (playerSelection === 'ROCK' && computerSelection === 'PAPER') {
         losts++;
-        // console.log(losts);
-        return 'Paper beats Rock! Opponent wins!';
-    } else if(playerSelection === 'Rock' && computerSelection === 'Scissors'){
+        return `Paper beats Rock! Current result is Player : ${wins} Computer : ${losts}`;
+    } else if (playerSelection === 'ROCK' && computerSelection === 'SCISSORS') {
         wins++;
-        // console.log(wins);
-        return 'Rock beats Scissors! You win!';
-    } else if(playerSelection === 'Paper' && computerSelection === 'Rock'){
+        return `Rock beats Scissors! Current result is Player : ${wins} Computer : ${losts}`;
+    } else if (playerSelection === 'PAPER' && computerSelection === 'ROCK') {
         wins++;
-        return 'Paper beats Rock! You win!';
-    } else if(playerSelection === 'Paper' && computerSelection === 'Scissors'){
+        return `Paper beats Rock! Current result is Player : ${wins} Computer: ${losts}`;
+    } else if (playerSelection === 'PAPER' && computerSelection === 'SCISSORS') {
         losts++;
-        return 'Scissors beats Paper! Opponent wins';
-    } else if(playerSelection === 'Scissors' && computerSelection === 'Rock'){
+        return `Scissors beats Paper! Current result is Player : ${wins} Computer: ${losts}`;
+    } else if (playerSelection === 'SCISSORS' && computerSelection === 'ROCK') {
         losts++;
-        return 'Rock beats Scissors! Opponent wins';
-    } else if(playerSelection === 'Scissors' && computerSelection === 'Paper'){
+        return `Rock beats Scissors! Current result is Player : ${wins} Computer : ${losts}`;
+    } else if (playerSelection === 'SCISSORS' && computerSelection === 'PAPER') {
         wins++;
-        return 'Scissors beats Paper! You win!';
+        return `Scissors beats Paper! Current result is Player : ${wins} Computer : ${losts}`;
     }
     else return 'Invalid input';
 }
-let playerSelection = prompt('Choose Rock, Paper or Scissors');
-// prompt('Choose Rock, Paper or Scissors');
+
+const getPlayerChoice = function () {
+    let playerSelection = prompt('Choose Rock, Paper or Scissors');
+    playerSelection = playerSelection.toUpperCase();
+    return playerSelection;
+}
 
 let words = ['Rock', 'Paper', 'Scissors'];
 
 const computerSelection = getComputerChoice();
-function getComputerChoice(){
-    return words[Math.random()*words.length | 0];
+
+function getComputerChoice() {
+    return words[Math.random() * words.length | 0].toUpperCase();
 }
 
-// console.log(playerSelection, computerSelection);
-// console.log(playRound(playerSelection, computerSelection));
-
-function game(){
-    for (let i = 0; i < 5; i++){
-        console.log(playRound(prompt('Choose Rock, Paper or Scissors'), getComputerChoice()));
-
+function game() {
+    for (let i = 0; i < 5; i++) {
+        console.log(playRound(getPlayerChoice(), getComputerChoice()));
     }
-    
-    if(wins > losts && wins > draws){
-        return 'You won the game!';
-    } else if(losts > wins && losts > draws){
-        return 'You lost the game!'
-    } else if(draws > wins && draws > losts){
-        return 'You drawed the game!'
+
+    if (wins > losts && wins > draws) {
+        return `You won the game! Final result is Player : ${wins} Computer : ${losts}`;
+    } else if (losts > wins && losts > draws) {
+        return `You lost the game! Final result is Player : ${wins} Computer : ${losts}`
+    } else if (draws > wins && draws > losts) {
+        return `You drawed the game! Final result is Player : ${wins} Computer : ${losts}`
     }
 }
-console.log(game())
+console.log(game());
