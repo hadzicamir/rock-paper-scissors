@@ -36,7 +36,10 @@ function playRound(playerSelection, computerSelection) {
         wins++;
         return `Scissors beats Paper! Current result is Player : ${wins} Computer : ${losts}`;
     }
-    else return 'Invalid input';
+    else if (playerSelection !== `${rock} || playerSelection !== ${paper} || playerSelection !== ${scissors}`){
+        losts++;
+        return `Invalid input. You lost. Be careful! Current result is Player : ${wins} Computer : ${losts}`;
+    } else return 'What?'
 }
 
 const getPlayerChoice = function () {
@@ -59,11 +62,11 @@ function game() {
         console.log(playRound(getPlayerChoice(), getComputerChoice()));
     }
 // Three outcome conditions
-    if (wins > losts || wins > draws) {
+    if (wins > losts ) {
         return `You won the game! Final result is Player : ${wins} Computer : ${losts}`;
-    } else if (losts > wins || losts > draws) {
+    } else if (losts > wins) {
         return `You lost the game! Final result is Player : ${wins} Computer : ${losts}`
-    } else if (draws > wins || draws > losts) {
+    } else {
         return `You drawed the game! Final result is Player : ${wins} Computer : ${losts}`
     }
 }
