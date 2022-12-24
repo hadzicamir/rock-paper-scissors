@@ -1,29 +1,38 @@
+// Variables to display the result
 let wins = 0;
 let losts = 0;
 let draws = 0;
 
+// Outcome variables
+let rock = 'ROCK';
+let paper = 'PAPER';
+let scissors = 'SCISSORS';
+
+// Play one round. Conditions for win, draw and lose outcomes.
 function playRound(playerSelection, computerSelection) {
     console.log(`You chose ${playerSelection}`);
     console.log(`Computer chose ${computerSelection}`);
-    if ((playerSelection === 'ROCK' && computerSelection === 'ROCK') || (playerSelection === 'PAPER' && computerSelection === 'PAPER') || (playerSelection === 'SCISSORS' && computerSelection === 'SCISSORS')) {
+    if ((playerSelection === `${rock}` && computerSelection === `${rock}`) || 
+        (playerSelection === `${paper}` && computerSelection === `${paper}`) || 
+        (playerSelection === `${scissors}` && computerSelection === `${scissors}`)) {
         draws++;
         return `It\'s a draw! Current result is Player : ${wins} Computer : ${losts}`;
-    } else if (playerSelection === 'ROCK' && computerSelection === 'PAPER') {
+    } else if (playerSelection === `${rock}` && computerSelection === `${paper}`) {
         losts++;
         return `Paper beats Rock! Current result is Player : ${wins} Computer : ${losts}`;
-    } else if (playerSelection === 'ROCK' && computerSelection === 'SCISSORS') {
+    } else if (playerSelection === `${rock}` && computerSelection === `${scissors}`) {
         wins++;
         return `Rock beats Scissors! Current result is Player : ${wins} Computer : ${losts}`;
-    } else if (playerSelection === 'PAPER' && computerSelection === 'ROCK') {
+    } else if (playerSelection === `${paper}` && computerSelection === `${rock}`) {
         wins++;
         return `Paper beats Rock! Current result is Player : ${wins} Computer: ${losts}`;
-    } else if (playerSelection === 'PAPER' && computerSelection === 'SCISSORS') {
+    } else if (playerSelection === `${paper}` && computerSelection === `${scissors}`) {
         losts++;
         return `Scissors beats Paper! Current result is Player : ${wins} Computer: ${losts}`;
-    } else if (playerSelection === 'SCISSORS' && computerSelection === 'ROCK') {
+    } else if (playerSelection === `${scissors}` && computerSelection === `${rock}`) {
         losts++;
         return `Rock beats Scissors! Current result is Player : ${wins} Computer : ${losts}`;
-    } else if (playerSelection === 'SCISSORS' && computerSelection === 'PAPER') {
+    } else if (playerSelection === `${scissors}` && computerSelection === `${paper}`) {
         wins++;
         return `Scissors beats Paper! Current result is Player : ${wins} Computer : ${losts}`;
     }
@@ -31,6 +40,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 const getPlayerChoice = function () {
+    // Save answer to a variable
     let playerSelection = prompt('Choose Rock, Paper or Scissors');
     playerSelection = playerSelection.toUpperCase();
     return playerSelection;
@@ -39,21 +49,21 @@ const getPlayerChoice = function () {
 let words = ['Rock', 'Paper', 'Scissors'];
 
 const computerSelection = getComputerChoice();
-
+//Randomly select a word 
 function getComputerChoice() {
     return words[Math.random() * words.length | 0].toUpperCase();
 }
-
+// Play multiple games
 function game() {
     for (let i = 0; i < 5; i++) {
         console.log(playRound(getPlayerChoice(), getComputerChoice()));
     }
-
-    if (wins > losts && wins > draws) {
+// Three outcome conditions
+    if (wins > losts || wins > draws) {
         return `You won the game! Final result is Player : ${wins} Computer : ${losts}`;
-    } else if (losts > wins && losts > draws) {
+    } else if (losts > wins || losts > draws) {
         return `You lost the game! Final result is Player : ${wins} Computer : ${losts}`
-    } else if (draws > wins && draws > losts) {
+    } else if (draws > wins || draws > losts) {
         return `You drawed the game! Final result is Player : ${wins} Computer : ${losts}`
     }
 }
