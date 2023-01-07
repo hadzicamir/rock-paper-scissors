@@ -8,6 +8,22 @@ let rock = 'ROCK';
 let paper = 'PAPER';
 let scissors = 'SCISSORS';
 
+const rockBtn = document.querySelector('#rock');
+const paperBtn = document.querySelector('#paper');
+const scissorsBtn = document.querySelector('#scissors');
+
+rockBtn.addEventListener('click', (e) => {
+    console.log(playRound(e.target.id.toUpperCase(), getComputerChoice()))
+});
+
+paperBtn.addEventListener('click', (e) => {
+    console.log(playRound(e.target.id.toUpperCase(), getComputerChoice()))
+});
+
+scissorsBtn.addEventListener('click', (e) => {
+    console.log(playRound(e.target.id.toUpperCase(), getComputerChoice()))
+});
+
 // Play one round. Conditions for win, draw and lose outcomes.
 function playRound(playerSelection, computerSelection) {
     console.log(`You chose ${playerSelection}`);
@@ -70,4 +86,4 @@ function game() {
         return `You drawed the game! Final result is Player : ${wins} Computer : ${losts}`
     }
 }
-console.log(game());
+// console.log(game());
