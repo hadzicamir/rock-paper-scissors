@@ -84,6 +84,16 @@ function getComputerChoice() {
 }
 // Play multiple games
 function game() {
+    if(wins === 5){
+        linebreak = document.createElement("br");
+        results.appendChild(linebreak);
+        finalResult.append(`You won the game! Final result is Player : ${wins} Computer : ${losts}`);
+    } else if(losts === 5){
+        linebreak = document.createElement("br");
+        results.appendChild(linebreak);
+        finalResult.append(`You lost the game! Final result is Player : ${wins} Computer : ${losts}`)
+    }
+    
     // for (let i = 0; i < 5; i++) {
     //     console.log(playRound(getPlayerChoice(), getComputerChoice()));
     // }
@@ -95,15 +105,12 @@ function game() {
     // } else {
     //     return `You drawed the game! Final result is Player : ${wins} Computer : ${losts}`
     // }
-    
-    if(wins === 5){
-        linebreak = document.createElement("br");
-    results.appendChild(linebreak);
-        finalResult.append(`You won the game! Final result is Player : ${wins} Computer : ${losts}`);
-    } else if(losts === 5){
-        linebreak = document.createElement("br");
-    results.appendChild(linebreak);
-        finalResult.append(`You lost the game! Final result is Player : ${wins} Computer : ${losts}`)
-    }
 }
 // game();
+
+const reset = document.querySelector('.reset');
+reset.style.margin = '1em';
+reset.addEventListener('click', (e) => {
+    results.textContent = '';
+    finalResult.textContent = '';
+})
