@@ -11,23 +11,40 @@ let scissors = 'SCISSORS';
 const rockBtn = document.querySelector('#rock');
 const paperBtn = document.querySelector('#paper');
 const scissorsBtn = document.querySelector('#scissors');
+const buttons = document.querySelectorAll('button');
+const results = document.createElement('div');
+const container = document.querySelector('.container');
+container.appendChild(results);
 
-rockBtn.addEventListener('click', (e) => {
-    console.log(playRound(e.target.id.toUpperCase(), getComputerChoice()))
+// rockBtn.addEventListener('click', (e) => {
+//     console.log(playRound(e.target.id.toUpperCase(), getComputerChoice()))
+// });
+
+// paperBtn.addEventListener('click', (e) => {
+//     console.log(playRound(e.target.id.toUpperCase(), getComputerChoice()))
+// });
+
+// scissorsBtn.addEventListener('click', (e) => {
+//     console.log(playRound(e.target.id.toUpperCase(), getComputerChoice()))
+// });
+
+buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        results.append(playRound(e.target.id.toUpperCase(), getComputerChoice()))
+    });
 });
 
-paperBtn.addEventListener('click', (e) => {
-    console.log(playRound(e.target.id.toUpperCase(), getComputerChoice()))
-});
-
-scissorsBtn.addEventListener('click', (e) => {
-    console.log(playRound(e.target.id.toUpperCase(), getComputerChoice()))
-});
 
 // Play one round. Conditions for win, draw and lose outcomes.
 function playRound(playerSelection, computerSelection) {
-    console.log(`You chose ${playerSelection}`);
-    console.log(`Computer chose ${computerSelection}`);
+    linebreak = document.createElement("br");
+    results.appendChild(linebreak);
+    results.append(`You chose ${playerSelection}`);
+    linebreak = document.createElement("br");
+    results.appendChild(linebreak);
+    results.append(`Computer chose ${computerSelection}`);
+    linebreak = document.createElement("br");
+    results.appendChild(linebreak);
     if ((playerSelection === `${rock}` && computerSelection === `${rock}`) || 
         (playerSelection === `${paper}` && computerSelection === `${paper}`) || 
         (playerSelection === `${scissors}` && computerSelection === `${scissors}`)) {
