@@ -15,25 +15,18 @@ const buttons = document.querySelectorAll('button');
 const results = document.createElement('div');
 const container = document.querySelector('.container');
 container.appendChild(results);
-
-// rockBtn.addEventListener('click', (e) => {
-//     console.log(playRound(e.target.id.toUpperCase(), getComputerChoice()))
-// });
-
-// paperBtn.addEventListener('click', (e) => {
-//     console.log(playRound(e.target.id.toUpperCase(), getComputerChoice()))
-// });
-
-// scissorsBtn.addEventListener('click', (e) => {
-//     console.log(playRound(e.target.id.toUpperCase(), getComputerChoice()))
-// });
+const finalResult = document.createElement('div');
+finalResult.style.fontWeight = 'bold';
+container.appendChild(finalResult);
 
 buttons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-        results.append(playRound(e.target.id.toUpperCase(), getComputerChoice()))
+    button.addEventListener('click', (e) => { 
+        results.append(playRound(e.target.id.toUpperCase(), getComputerChoice()));
+        linebreak = document.createElement("br");
+        results.appendChild(linebreak);
+        game();
     });
 });
-
 
 // Play one round. Conditions for win, draw and lose outcomes.
 function playRound(playerSelection, computerSelection) {
@@ -75,12 +68,12 @@ function playRound(playerSelection, computerSelection) {
     } else return 'What?'
 }
 
-const getPlayerChoice = function () {
-    // Save answer to a variable
-    let playerSelection = prompt('Choose Rock, Paper or Scissors');
-    playerSelection = playerSelection.toUpperCase();
-    return playerSelection;
-}
+// const getPlayerChoice = function () {
+//     // Save answer to a variable
+//     let playerSelection = prompt('Choose Rock, Paper or Scissors');
+//     playerSelection = playerSelection.toUpperCase();
+//     return playerSelection;
+// }
 
 let words = ['Rock', 'Paper', 'Scissors'];
 
@@ -91,16 +84,26 @@ function getComputerChoice() {
 }
 // Play multiple games
 function game() {
-    for (let i = 0; i < 5; i++) {
-        console.log(playRound(getPlayerChoice(), getComputerChoice()));
-    }
+    // for (let i = 0; i < 5; i++) {
+    //     console.log(playRound(getPlayerChoice(), getComputerChoice()));
+    // }
 // Three outcome conditions
-    if (wins > losts ) {
-        return `You won the game! Final result is Player : ${wins} Computer : ${losts}`;
-    } else if (losts > wins) {
-        return `You lost the game! Final result is Player : ${wins} Computer : ${losts}`
-    } else {
-        return `You drawed the game! Final result is Player : ${wins} Computer : ${losts}`
+    // if (wins > losts ) {
+    //     return `You won the game! Final result is Player : ${wins} Computer : ${losts}`;
+    // } else if (losts > wins) {
+    //     return `You lost the game! Final result is Player : ${wins} Computer : ${losts}`
+    // } else {
+    //     return `You drawed the game! Final result is Player : ${wins} Computer : ${losts}`
+    // }
+    
+    if(wins === 5){
+        linebreak = document.createElement("br");
+    results.appendChild(linebreak);
+        finalResult.append(`You won the game! Final result is Player : ${wins} Computer : ${losts}`);
+    } else if(losts === 5){
+        linebreak = document.createElement("br");
+    results.appendChild(linebreak);
+        finalResult.append(`You lost the game! Final result is Player : ${wins} Computer : ${losts}`)
     }
 }
-// console.log(game());
+// game();
